@@ -1,0 +1,266 @@
+{
+	"info": {
+		"_postman_id": "47298488-f977-41a7-bd99-e13a1b9351fd",
+		"name": "04-Retrievefornotifications api testing",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Retrievefornotifications-01",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test(\"Check if returns expected recipients list\", function () {\r",
+							"    let recipients = \r",
+							"    [\r",
+							"        \"studentdesmond@gmail.com\",\r",
+							"        \"studentwalt@gmail.com\"\r",
+							"    ];\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.recipients).to.not.equal( undefined );\r",
+							"    pm.expect(jsonData.recipients).to.deep.equal( recipients );\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"teacher\":  \"teachersayid@gmail.com\",\r\n  \"notification\": \"Hey everybody\"\r\n}"
+				},
+				"url": {
+					"raw": "{{HostIpAddress}}:{{HostPort}}/api/retrievefornotifications",
+					"host": [
+						"{{HostIpAddress}}"
+					],
+					"port": "{{HostPort}}",
+					"path": [
+						"api",
+						"retrievefornotifications"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Retrievefornotifications-02",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test(\"Check if returns expected recipients list\", function () {\r",
+							"    let recipients = \r",
+							"    [\r",
+							"        \"studentjohn@gmail.com\",\r",
+							"        \"studentdesmond@gmail.com\",\r",
+							"        \"studentwalt@gmail.com\"\r",
+							"    ];\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.recipients).to.not.equal( undefined );\r",
+							"    pm.expect(jsonData.recipients).to.deep.equal( recipients );\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"teacher\":  \"teachersayid@gmail.com\",\r\n  \"notification\": \"Hello students! @studentjohn@gmail.com\"\r\n}"
+				},
+				"url": {
+					"raw": "localhost:3000/api/retrievefornotifications",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"retrievefornotifications"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Retrievefornotifications-03",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test(\"Check if returns expected recipients list\", function () {\r",
+							"    let recipients = \r",
+							"    [\r",
+							"        \"studentwalt@gmail.com\",\r",
+							"        \"studentdesmond@gmail.com\"\r",
+							"    ];\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.recipients).to.not.equal( undefined );\r",
+							"    pm.expect(jsonData.recipients).to.deep.equal( recipients );\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"teacher\":  \"teachersayid@gmail.com\",\r\n  \"notification\": \"Hello students! @studentwalt@gmail.com\"\r\n}"
+				},
+				"url": {
+					"raw": "localhost:3000/api/retrievefornotifications",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"retrievefornotifications"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Retrievefornotifications-04",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test(\"Check if returns expected recipients list\", function () {\r",
+							"    let recipients = [];\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.recipients).to.not.equal( undefined );\r",
+							"    pm.expect(jsonData.recipients).to.deep.equal( recipients );\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"teacher\":  \"teacherhugo@gmail.com\",\r\n  \"notification\": \"Hello everybody\"\r\n}"
+				},
+				"url": {
+					"raw": "localhost:3000/api/retrievefornotifications",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"retrievefornotifications"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Retrievefornotifications-05",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test(\"Check if returns expected recipients list\", function () {\r",
+							"    let recipients = \r",
+							"    [\r",
+							"        \"studentdesmond@gmail.com\",\r",
+							"        \"studentwalt@gmail.com\"\r",
+							"    ];\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.recipients).to.not.equal( undefined );\r",
+							"    pm.expect(jsonData.recipients).to.deep.equal( recipients );\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"teacher\":  \"teachersayid@gmail.com\",\r\n  \"notification\": \"Hello students! @studentjames@gmail.com\"\r\n}"
+				},
+				"url": {
+					"raw": "localhost:3000/api/retrievefornotifications",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"retrievefornotifications"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

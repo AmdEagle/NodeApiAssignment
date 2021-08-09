@@ -1,0 +1,255 @@
+{
+	"info": {
+		"_postman_id": "0da6c300-8ba4-4b73-82ee-8c557e556fd2",
+		"name": "03- Suspend api testing",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Suspend a student",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 204\", function () {\r",
+							"    pm.response.to.have.status(204);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"student\" : \"studentjames@gmail.com\"\r\n}"
+				},
+				"url": {
+					"raw": "{{HostIpAddress}}:{{HostPort}}/api/suspend",
+					"host": [
+						"{{HostIpAddress}}"
+					],
+					"port": "{{HostPort}}",
+					"path": [
+						"api",
+						"suspend"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Suspend a suspended student",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 204\", function () {\r",
+							"    pm.response.to.have.status(204);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"student\" : \"studentjames@gmail.com\"\r\n}"
+				},
+				"url": {
+					"raw": "{{HostIpAddress}}:{{HostPort}}/api/suspend",
+					"host": [
+						"{{HostIpAddress}}"
+					],
+					"port": "{{HostPort}}",
+					"path": [
+						"api",
+						"suspend"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Suspend a teacher",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"if (pm.environment.get(\"IsUserValidationRequired\"))\r",
+							"{\r",
+							"    pm.test(\"Status code is 400\", function () {\r",
+							"        pm.response.to.have.status(400);\r",
+							"    });\r",
+							"    pm.test(\"Missing Student info error message shown\", function () {\r",
+							"        var jsonData = pm.response.json();\r",
+							"        pm.expect(jsonData.message).to.eql(\"Bad Request: teacherjack@gmail.com is not a student but a Teacher\");\r",
+							"    });\r",
+							"}\r",
+							"else\r",
+							"{\r",
+							"    pm.test(\"Status code is 204\", function () \r",
+							"    {\r",
+							"        pm.response.to.have.status(204);\r",
+							"    });\r",
+							"}\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"student\" : \"teacherjack@gmail.com\"\r\n}"
+				},
+				"url": {
+					"raw": "{{HostIpAddress}}:{{HostPort}}/api/suspend",
+					"host": [
+						"{{HostIpAddress}}"
+					],
+					"port": "{{HostPort}}",
+					"path": [
+						"api",
+						"suspend"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Suspend Invalid Student ( not in Users Table )",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"if (pm.environment.get(\"IsUserValidationRequired\"))\r",
+							"{\r",
+							"    pm.test(\"Status code is 400\", function () {\r",
+							"        pm.response.to.have.status(400);\r",
+							"    });\r",
+							"    pm.test(\"Missing Teacher info error message shown\", function () {\r",
+							"        var jsonData = pm.response.json();\r",
+							"        pm.expect(jsonData.message).to.eql(\"Bad Request: Student random@gmail.com is not a registered student\");\r",
+							"    });\r",
+							"}\r",
+							"else\r",
+							"{\r",
+							"    pm.test(\"Status code is 204\", function () \r",
+							"    {\r",
+							"        pm.response.to.have.status(204);\r",
+							"    });\r",
+							"}\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"student\" : \"random@gmail.com\"\r\n}"
+				},
+				"url": {
+					"raw": "{{HostIpAddress}}:{{HostPort}}/api/suspend",
+					"host": [
+						"{{HostIpAddress}}"
+					],
+					"port": "{{HostPort}}",
+					"path": [
+						"api",
+						"suspend"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Missing Student info missing in message body",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {\r",
+							"    pm.response.to.have.status(400);\r",
+							"});\r",
+							"pm.test(\"Missing Teacher info error message shown\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.message).to.eql(\"Bad Request: No student email received to suspend\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{HostIpAddress}}:{{HostPort}}/api/suspend",
+					"host": [
+						"{{HostIpAddress}}"
+					],
+					"port": "{{HostPort}}",
+					"path": [
+						"api",
+						"suspend"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

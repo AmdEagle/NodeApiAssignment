@@ -1,0 +1,12 @@
+{
+    "appPort"   : 3000,
+    "IsUserValidationRequired" : false,
+    "Repository": 
+    {
+        "host"        : "192.168.1.170",
+        "user"        : "app_access_acc",
+        "password"    : "P@ssw0rd",
+        "database"    : "University"
+    },
+    "version": 0.1
+}

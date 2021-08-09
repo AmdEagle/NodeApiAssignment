@@ -1,0 +1,196 @@
+{
+	"info": {
+		"_postman_id": "fcf6bf3d-2b19-410c-9ab3-22be20f5e46f",
+		"name": "02-Common students api testing",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Get students that belong to a single teacher",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test(\"Check if returns expected students list\", function () {\r",
+							"    let expectedStudents = \r",
+							"    [\r",
+							"        \"studentdesmond@gmail.com\",\r",
+							"        \"studentjames@gmail.com\",\r",
+							"        \"studentwalt@gmail.com\"\r",
+							"    ];\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.students).to.not.equal( undefined );\r",
+							"    pm.expect(jsonData.students).to.deep.equal( expectedStudents );\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{HostIpAddress}}:{{HostPort}}/api/commonstudents?teacher=teachersayid%40gmail.com",
+					"host": [
+						"{{HostIpAddress}}"
+					],
+					"port": "{{HostPort}}",
+					"path": [
+						"api",
+						"commonstudents"
+					],
+					"query": [
+						{
+							"key": "teacher",
+							"value": "teachersayid%40gmail.com"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get students that belong to a both teachers",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test(\"Check if returns expected students list\", function () {\r",
+							"    let expectedStudents = \r",
+							"    [\r",
+							"        \"studentwalt@gmail.com\"\r",
+							"    ];\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.students).to.not.equal( undefined );\r",
+							"    pm.expect(jsonData.students).to.deep.equal( expectedStudents );\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{HostIpAddress}}:{{HostPort}}/api/commonstudents?teacher=teachersayid%40gmail.com&teacher=teacherjack%40gmail.com",
+					"host": [
+						"{{HostIpAddress}}"
+					],
+					"port": "{{HostPort}}",
+					"path": [
+						"api",
+						"commonstudents"
+					],
+					"query": [
+						{
+							"key": "teacher",
+							"value": "teachersayid%40gmail.com"
+						},
+						{
+							"key": "teacher",
+							"value": "teacherjack%40gmail.com"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get students that belong to three teachers, where one of the teachers has no students.",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test(\"Check if returns expected students list\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.students).to.not.equal( undefined );\r",
+							"    pm.expect(jsonData.students.length).to.equal( 0 );\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{HostIpAddress}}:{{HostPort}}/api/commonstudents?teacher=teachersayid%40gmail.com&teacher=teacherjack%40gmail.com&teacher=teacherhugo%40gmail.com",
+					"host": [
+						"{{HostIpAddress}}"
+					],
+					"port": "{{HostPort}}",
+					"path": [
+						"api",
+						"commonstudents"
+					],
+					"query": [
+						{
+							"key": "teacher",
+							"value": "teachersayid%40gmail.com"
+						},
+						{
+							"key": "teacher",
+							"value": "teacherjack%40gmail.com"
+						},
+						{
+							"key": "teacher",
+							"value": "teacherhugo%40gmail.com"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Missing teacher info in Query Param",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {\r",
+							"    pm.response.to.have.status(400);\r",
+							"});\r",
+							"pm.test(\"Check if returns expected students list\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.message).to.equal( \"Bad Request: No teacherId found\" );\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{HostIpAddress}}:{{HostPort}}/api/commonstudents",
+					"host": [
+						"{{HostIpAddress}}"
+					],
+					"port": "{{HostPort}}",
+					"path": [
+						"api",
+						"commonstudents"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

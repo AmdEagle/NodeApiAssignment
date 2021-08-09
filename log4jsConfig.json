@@ -1,0 +1,30 @@
+{
+    "appenders": 
+    {
+        "application":
+        {
+            "type" : "console",
+            "layout": 
+            {
+                "type"      : "pattern",
+                "pattern"   : "%[[%d{ISO8601}] [%p][%c] [%f{2} - Line:%l]%] %m"
+            }
+        },
+        "CORE" : 
+        { 
+            "type"        : "dateFile", 
+            "filename"    : "logs/CORE.log", 
+            "pattern"     : ".yyyy-MM-dd-hh",
+            "compress"    : true 
+        }
+    },
+    "categories": 
+    {
+        "default": 
+        { 
+            "appenders"         : [ "application", "CORE" ], 
+            "level"             : "debug",
+            "enableCallStack"   : true 
+        }
+    }
+  }

@@ -1,0 +1,83 @@
+{
+    "apiEndpoints":
+    {
+        "getUsers":
+        {
+            "httpMethod"    : "GET",
+            "ServiceId"     : "User",
+            "OperationId"   : "getUsers"
+        },
+        "getUserByEmailId":
+        {
+            "httpMethod"    : "GET",
+            "ServiceId"     : "User",
+            "OperationId"   : "getUserByEmailId"
+        },
+        "addUser":
+        {
+            "httpMethod"    : "POST",
+            "ServiceId"     : "User",
+            "OperationId"   : "addUser"
+        },
+        "register":
+        {
+            "httpMethod"    : "POST",
+            "ServiceId"     : "Registration",
+            "OperationId"   : "register"
+        },
+        "deleteAllRegisteredStudents":
+        {
+            "httpMethod"    : "GET",
+            "ServiceId"     : "Registration",
+            "OperationId"   : "deleteAllRegisteredStudents"
+        },
+        "commonstudents":
+        {
+            "httpMethod"    : "GET",
+            "ServiceId"     : "Registration",
+            "OperationId"   : "commonstudents"
+        },
+        "suspend":
+        {
+            "httpMethod"    : "POST",
+            "ServiceId"     : "Student",
+            "OperationId"   : "suspend"
+        },
+        "getSuspendedStudents":
+        {
+            "httpMethod"    : "GET",
+            "ServiceId"     : "Student",
+            "OperationId"   : "getSuspendedStudents"
+        },
+        "getSuspendedStudentUnderTeacher":
+        {
+            "httpMethod"    : "GET",
+            "ServiceId"     : "Student",
+            "OperationId"   : "getSuspendedStudentUnderTeacher"
+        },
+        "retrievefornotifications":
+        {
+            "httpMethod"    : "POST",
+            "ServiceId"     : "Teacher",
+            "OperationId"   : "retrievefornotifications"
+        },
+        "deleteSuspendedStudents":
+        {
+            "httpMethod"    : "POST",
+            "ServiceId"     : "Student",
+            "OperationId"   : "deleteSuspendedStudents"
+        },
+        "deleteAllStudents":
+        {
+            "httpMethod"    : "GET",
+            "ServiceId"     : "Student",
+            "OperationId"   : "deleteAllStudents"
+        },
+        "getAllRegisteredStudents":
+        {
+            "httpMethod"    : "GET",
+            "ServiceId"     : "Registration",
+            "OperationId"   : "getAllRegisteredStudents"
+        }
+    }
+}
