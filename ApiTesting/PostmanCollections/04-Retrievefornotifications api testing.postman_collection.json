@@ -97,11 +97,11 @@
 					"raw": "{\r\n  \"teacher\":  \"teachersayid@gmail.com\",\r\n  \"notification\": \"Hello students! @studentjohn@gmail.com\"\r\n}"
 				},
 				"url": {
-					"raw": "localhost:3000/api/retrievefornotifications",
+					"raw": "{{HostIpAddress}}:{{HostPort}}/api/retrievefornotifications",
 					"host": [
-						"localhost"
+						"{{HostIpAddress}}"
 					],
-					"port": "3000",
+					"port": "{{HostPort}}",
 					"path": [
 						"api",
 						"retrievefornotifications"
@@ -149,11 +149,11 @@
 					"raw": "{\r\n  \"teacher\":  \"teachersayid@gmail.com\",\r\n  \"notification\": \"Hello students! @studentwalt@gmail.com\"\r\n}"
 				},
 				"url": {
-					"raw": "localhost:3000/api/retrievefornotifications",
+					"raw": "{{HostIpAddress}}:{{HostPort}}/api/retrievefornotifications",
 					"host": [
-						"localhost"
+						"{{HostIpAddress}}"
 					],
-					"port": "3000",
+					"port": "{{HostPort}}",
 					"path": [
 						"api",
 						"retrievefornotifications"
@@ -197,11 +197,11 @@
 					"raw": "{\r\n  \"teacher\":  \"teacherhugo@gmail.com\",\r\n  \"notification\": \"Hello everybody\"\r\n}"
 				},
 				"url": {
-					"raw": "localhost:3000/api/retrievefornotifications",
+					"raw": "{{HostIpAddress}}:{{HostPort}}/api/retrievefornotifications",
 					"host": [
-						"localhost"
+						"{{HostIpAddress}}"
 					],
-					"port": "3000",
+					"port": "{{HostPort}}",
 					"path": [
 						"api",
 						"retrievefornotifications"
@@ -249,11 +249,11 @@
 					"raw": "{\r\n  \"teacher\":  \"teachersayid@gmail.com\",\r\n  \"notification\": \"Hello students! @studentjames@gmail.com\"\r\n}"
 				},
 				"url": {
-					"raw": "localhost:3000/api/retrievefornotifications",
+					"raw": "{{HostIpAddress}}:{{HostPort}}/api/retrievefornotifications",
 					"host": [
-						"localhost"
+						"{{HostIpAddress}}"
 					],
-					"port": "3000",
+					"port": "{{HostPort}}",
 					"path": [
 						"api",
 						"retrievefornotifications"

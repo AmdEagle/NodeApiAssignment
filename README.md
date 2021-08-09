@@ -77,9 +77,24 @@
         1. Update the Post `"key":"HostPort"`'s value
     - To perform postman collection api testing do the following.
         1. Open a new ( As server is running on the current terminal ) terminal/cmd navigate to project folder
+        1. Make sure the server is running.
         1. Enter into the terminal/cmd
         1. `npm run apiTest`
-    - After the postman collection api test are completed. Call the following api to delete all records from the `Student` and `StudentRegistration` tables.
+    - After the postman collection api test are completed. Call the following api to delete all records from the `Student` and `StudentRegistration` tables individually or read the next step.
         1. <span style="color:blue">GET</span> `/api/deleteAllRegisteredStudents`
         1. <span style="color:blue">GET</span> `/api/deleteAllStudents`
+    - To clear both `Student` and `StudentRegistration` there is an npm command you can run to clear it instead you manually calling the api
+        1. Open new terminal/cmd navigate to project folder
+        1. Make sure the server is running.
+        1. Enter into the terminal/cmd
+        1. `npm run clearDB`
+
+## Hosted Environment on AWS Cloud
+- ### Accessing the hosted environment.
+    1. To run the postman api testing against the hosted environment you need update the file which is stated below.
+    1. Postman enironment variables are inside the file [LocalEnvironment.postman_environment](./ApiTesting/LocalEnvironment.postman_environment.json)
+    1. `Public IPv4 DNS` : ec2-54-255-185-171.ap-southeast-1.compute.amazonaws.com
+    1. `Public IP` : `54.255.185.171`
+    1. `apiAccessPort` : 3000
+
     

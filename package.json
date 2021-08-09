@@ -6,7 +6,8 @@
   "scripts": {
     "start": "node index.js",
     "test": "mocha \"test/**/*.spec.js\"",
-    "apiTest": "node ./ApiTesting/runApiTests.js"
+    "apiTest": "node ./ApiTesting/runApiTests.js",
+    "clearDB" : "newman run --environment ./ApiTesting/LocalEnvironment.postman_environment.json ./ApiTesting/PostmanCollections/Clean_Up_TestDB.postman_collection.json"
   },
   "author": "Balakrishnan Vijayakumaran",
   "license": "ISC",

@@ -6,7 +6,7 @@
 	},
 	"item": [
 		{
-			"name": "DeleteAllRecords",
+			"name": "DeleteAllRegisteredStudentRecords",
 			"request": {
 				"method": "GET",
 				"header": [],
@@ -19,6 +19,25 @@
 					"path": [
 						"api",
 						"deleteAllRegisteredStudents"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DeleteAllStudentRecords",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{HostIpAddress}}:{{HostPort}}/api/deleteAllStudents",
+					"host": [
+						"{{HostIpAddress}}"
+					],
+					"port": "{{HostPort}}",
+					"path": [
+						"api",
+						"deleteAllStudents"
 					]
 				}
 			},
