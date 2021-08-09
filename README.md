@@ -2,7 +2,7 @@
 
 ## Documents
 - ### Data Dictionary
-    [Data dictionary](./Documents/DataDictionary/DataDictionary.xlsx) is situated under the directory ./Documents/DataDictionary/
+    [Data dictionary](./Documents/DataDictionary/) is situated under the directory ./Documents/DataDictionary/
     The data dictionary contains table names, the field names and on the last sheet named "BasicTestDataSetUsedForTesting" is a set of basic data used for testing.
 
     There are a total of 3 tables.
@@ -13,7 +13,7 @@
     Users tables is a table I created for the validation purposes. To check whether the entity being used is whether a teacher or a student. This validation can be configured under [config.json](./config.json) by setting the flag true for the property "IsUserValidationRequired"
 
 - ### Test case document
-    [API test case document](./Documents/TestCases/apiTestCases.xlsx) is also uploaded into the folder ./Documents/TestCases/apiTestCases.xlsx. It contains all the test cases for the all the api required by the assignment.
+    [API test case document](./Documents/TestCases/) is also uploaded into the folder ./Documents/TestCases/apiTestCases.xlsx. It contains all the test cases for the all the api required by the assignment.
 
 
 ## Environment Setup
@@ -38,6 +38,7 @@
     1. `npm install`
     1. all node packages used are shown inside [package.json](./package.json)
 - ### Configuration setup
+    1. All project logs are piped to logs folder in the project directory
     1. Setup up the port on which you would like to run the server on. Default port : 3000.
         1. Open [config.json](./config.json)
         1. Set the port under the property `appPort`
@@ -56,22 +57,24 @@
         1. Open terminal/cmd navigate to project folder
         1. Enter into the terminal/cmd
         1. `npm run test`
-        1. Unit only contains test for the following
+        1. Unit contains test for the following
             - model/Student
             - model/StudentRegistration
             - service/Student
             - service/StudentRegistration
-        1. Only included these unit test to show the different types of units
+        1. Only included unit test to show the different types of units
             - One with no depedency module
             - one with module dependency injection/override
-        1. Due to the limited time only including the base cases and different types for different types
 - ### Starting server guide
     - To start up the server do the following.
         1. Open terminal/cmd navigate to project folder
         1. Enter into the terminal/cmd
         1. `npm run start` 
 - ### Running postman collection test
-    - All postman test collection json files are stored under the directory ./ApiTesting
+    - All postman test collection json files are stored under the directory [ApiTesting](./ApiTesting)
+    - Postman enironment variables are inside the file [LocalEnvironment.postman_environment](./ApiTesting/LocalEnvironment.postman_environment.json)
+        1. Update the IP Address `"key":"HostIpAddress"`'s value
+        1. Update the Post `"key":"HostPort"`'s value
     - After the postman collection api test are completed. Call the following api to delete all records from the `Student` and `StudentRegistration` tables.
         1. <span style="color:lightBlue">GET</span> `/api/deleteAllRegisteredStudents`
         1. <span style="color:lightBlue">GET</span> `/api/deleteAllStudents`
