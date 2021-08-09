@@ -75,10 +75,11 @@
     - Postman enironment variables are inside the file [LocalEnvironment.postman_environment](./ApiTesting/LocalEnvironment.postman_environment.json)
         1. Update the IP Address `"key":"HostIpAddress"`'s value
         1. Update the Post `"key":"HostPort"`'s value
-    - After the postman collection api test are completed. Call the following api to delete all records from the `Student` and `StudentRegistration` tables.
-        1. <span style="color:lightBlue">GET</span> `/api/deleteAllRegisteredStudents`
-        1. <span style="color:lightBlue">GET</span> `/api/deleteAllStudents`
     - To perform postman collection api testing do the following.
-        1. Open terminal/cmd navigate to project folder
+        1. Open a new ( As server is running on the current terminal ) terminal/cmd navigate to project folder
         1. Enter into the terminal/cmd
         1. `npm run apiTest`
+    - After the postman collection api test are completed. Call the following api to delete all records from the `Student` and `StudentRegistration` tables.
+        1. <span style="color:blue">GET</span> `/api/deleteAllRegisteredStudents`
+        1. <span style="color:blue">GET</span> `/api/deleteAllStudents`
+    
