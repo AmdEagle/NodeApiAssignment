@@ -9,7 +9,7 @@ function StudentRegistrationController( KRONOS )
     {
         if( !req.body )
         {   
-            return Promise.resolve({ status: 400, data: `Bad Request: [Missing]- request body` });
+            return { status: 400, data: `Bad Request: [Missing]- request body` };
         }
 
         let studentList = req.body.students || req.body.student;
@@ -17,12 +17,12 @@ function StudentRegistrationController( KRONOS )
 
         if( !studentList )
         {   
-            return Promise.resolve({ status: 400, data: `Bad Request: [Missing]- request student info` });
+            return { status: 400, data: `Bad Request: [Missing]- request student info` };
         }
 
         if( !teacherList )
         {   
-            return Promise.resolve({ status: 400, data: `Bad Request: [Missing]- request teacher info` });
+            return { status: 400, data: `Bad Request: [Missing]- request teacher info` };
         }
 
         studentList = Array.isArray( studentList ) ? studentList : [studentList];
@@ -30,12 +30,12 @@ function StudentRegistrationController( KRONOS )
 
         if( studentList.length == 0 )
         {
-            return Promise.resolve({ status: 400, data: `Bad Request: Students list is empty. No students to register` });
+            return { status: 400, data: `Bad Request: Students list is empty. No students to register` };
         }
 
         if( teacherList.length == 0 )
         {
-            return Promise.resolve({ status: 400, data: `Bad Request: Teachers list is empty. No Teacher to register under` });
+            return { status: 400, data: `Bad Request: Teachers list is empty. No Teacher to register under` };
         }
         if( CONFIG.IsUserValidationRequired )
         {
@@ -60,7 +60,7 @@ function StudentRegistrationController( KRONOS )
                     if( validUserList.indexOf( x ) < 0 )
                         return x;
                 });
-                return Promise.resolve({ status: 400, data: `Bad Request: Please ensure all the teachers and students belong to Users Table. Invalid Users are: ${invalidUsers.join(',')}` });
+                return { status: 400, data: `Bad Request: Please ensure all the teachers and students belong to Users Table. Invalid Users are: ${invalidUsers.join(',')}` };
             }
         }
 
@@ -97,11 +97,11 @@ function StudentRegistrationController( KRONOS )
         });
         if( noDuplicateKeyErrors.length > 0 )
         {
-            return Promise.reject( JSON.stringify( noDuplicateKeyErrors, null, 4 ));
+            return ( JSON.stringify( noDuplicateKeyErrors, null, 4 ));
         }
         else
         {
-            return Promise.resolve({ status: 204, data: "Registered Students to teacher successfully" });
+            return { status: 204, data: "Registered Students to teacher successfully" };
         }
     }
 
@@ -109,7 +109,7 @@ function StudentRegistrationController( KRONOS )
     {
         if ( !req.query.teacher )
         {
-            return Promise.resolve({ status: 400, data: `Bad Request: No teacherId found` });
+            return { status: 400, data: `Bad Request: No teacherId found` };
         }
 
         let teachers = req.query.teacher;
@@ -122,7 +122,7 @@ function StudentRegistrationController( KRONOS )
         if( teachers.length < 2 )
         {
             KRONOS.getLogger().debug( `If there is only 1 teacher return students that belong to that teacher` );
-            return Promise.resolve({ status: 200, data: { students: result.map( x => x.StudentEmail ) }});
+            return { status: 200, data: { students: result.map( x => x.StudentEmail ) }};
         }
         else
         {
@@ -141,7 +141,7 @@ function StudentRegistrationController( KRONOS )
                     commonStudents.push( studentEmail );
                 }
             }
-            return Promise.resolve({ status: 200, data: { students: commonStudents }});
+            return { status: 200, data: { students: commonStudents }};
         }
     }
 

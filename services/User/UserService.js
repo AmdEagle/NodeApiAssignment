@@ -15,7 +15,7 @@ function UserController( KRONOS )
         let emailId = req.query.emailId;
         if( !emailId )
         {
-            return Promise.resolve({ status: 400, data: "Bad Request:  No email id was provided for Query" });
+            return ({ status: 400, data: "Bad Request:  No email id was provided for Query" });
         }
         return userdbConn.getUserByEmailId( emailId )
         .then( result => ({ status: 200, data: result }));
@@ -25,7 +25,7 @@ function UserController( KRONOS )
     {
         if( !req.body )
         {
-            return Promise.resolve({ status: 400, data: `Bad Request: No User data to load` });
+            return ({ status: 400, data: `Bad Request: No User data to load` });
         }
         let userObj = await buildUser( req.body );
         return userdbConn.addUser( userObj )
@@ -34,11 +34,11 @@ function UserController( KRONOS )
         {
             if( err.sqlMessage && err.sqlMessage.includes( 'Duplicate entry' ))
             {
-                return Promise.resolve({ status: 400, data: `Bad Request: User already exits in database` });
+                return ({ status: 400, data: `Bad Request: User already exits in database` });
             }
             else
             {
-                return Promise.reject( err );
+                return err;
             }
         });
     }

@@ -10,12 +10,12 @@ function StudentController( KRONOS )
         KRONOS.getLogger().debug( req.body );
         if( !req.body || !req.body.student )
         {
-            return Promise.resolve({ status: 400, data: `Bad Request: No student email received to suspend` });
+            return { status: 400, data: `Bad Request: No student email received to suspend` };
         }
 
         if( typeof( req.body.student ) !== "string" )
         {
-            return Promise.resolve({ status: 400, data: `Bad Request: Student email expected as a string Not array or any other format. Only one student can suspended at a time.` });
+            return { status: 400, data: `Bad Request: Student email expected as a string Not array or any other format. Only one student can suspended at a time.` };
         }
 
         if( CONFIG.IsUserValidationRequired )
@@ -33,12 +33,12 @@ function StudentController( KRONOS )
             KRONOS.getLogger().debug( validUsers );
             if( validUsers.data.length == 0 )
             {
-                return Promise.resolve({ status: 400, data: `Bad Request: Student ${ req.body.student } is not a registered student` });
+                return { status: 400, data: `Bad Request: Student ${ req.body.student } is not a registered student` };
             }
 
             if( validUsers.data[0].Type !== 'Student' )
             {
-                return Promise.resolve({ status: 400, data: `Bad Request: ${ req.body.student } is not a student but a ${validUsers.data[0].Type}` });
+                return { status: 400, data: `Bad Request: ${ req.body.student } is not a student but a ${validUsers.data[0].Type}` };
             }
         }
         
@@ -57,11 +57,11 @@ function StudentController( KRONOS )
     {
         if( !req.body || !req.body.students )
         {
-            return Promise.resolve({ status: 400, data: `Bad Request: No student email received for deletion of students` });
+            return { status: 400, data: `Bad Request: No student email received for deletion of students` };
         }
         if( !Array.isArray( req.body.students ))
         {
-            return Promise.resolve({ status: 400, data: `Bad Request: Expecting students as an array` });
+            return { status: 400, data: `Bad Request: Expecting students as an array` };
         }
         return studentdbConn.deleteSuspendedStudents( req.body.students )
         .then( result => ({ status: 200, data: { message:  `Deleted ${result.affectedRows} rows` }}));
@@ -77,7 +77,7 @@ function StudentController( KRONOS )
     {
         if( !req.params || !req.query.teacher )
         {
-            return Promise.resolve({ status: 400, data: `Bad Request: No teacher email received to get students` });
+            return { status: 400, data: `Bad Request: No teacher email received to get students` };
         }
 
         return studentdbConn.getSuspendedStudentUnderTeacher( req.query.teacher )

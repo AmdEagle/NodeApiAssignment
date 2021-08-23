@@ -4,7 +4,7 @@ function TeacherController( KRONOS )
     {
         if( !req.body || !req.body.teacher )
         {
-            return Promis.resolve({ status: 400, data: `Bad Request: Teacher's email id was not received` });
+            return { status: 400, data: `Bad Request: Teacher's email id was not received` };
         }
 
         let mentionedStudents = [];
@@ -38,7 +38,7 @@ function TeacherController( KRONOS )
                 notificationList.push( student );
             }
         });
-        return Promise.resolve({ status: 200, data:{ recipients : notificationList }});
+        return { status: 200, data:{ recipients : notificationList }};
     }
 
     return Object.freeze({
