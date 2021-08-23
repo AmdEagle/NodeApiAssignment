@@ -2,12 +2,13 @@ const express       = require('./node_modules/express');
 const bodyParser    = require('./node_modules/body-parser');
 const KRONOS        = require('./core/core');
 const routes        = require('./routes');
-KRONOS.baseProjPath = __dirname;
+const reqValidationHandler = require('./routes/reqValidationHandler');
 
 const appPort = KRONOS.getConfig().appPort;
 const app = express();
 
 app.use( bodyParser.json() );
+app.use( '/api', reqValidationHandler );
 app.use( '/api', routes );
 
 // This api is for testing purpose only to populate global postman evironment variable
