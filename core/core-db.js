@@ -19,9 +19,11 @@ function coreDB( KRONOS )
         {
             if( err )
             {
+                KRONOS.isDatabaseRunning = false;
                 KRONOS.getLogger().error( 'Error connecting: ' + err.stack );
                 return;
             }
+            KRONOS.isDatabaseRunning = true;
             KRONOS.getLogger().trace( 'connected as id ' + connection.threadId );
             KRONOS.getLogger().debug( `Initializing MySQL Database connection to ${ CONFIG.Repository.host }: Completed` );    
         });

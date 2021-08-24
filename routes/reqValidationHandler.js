@@ -3,6 +3,21 @@ const KRONOS    = require('../core/core');
 
 let reqValidationHandler = ( req, res, next ) =>
 {
+    if( !KRONOS.isDatabaseRunning )
+    {
+        KRONOS.getLogger().debug(`Failed to process rquest during to Database connection error`);
+        let incomingReq = 
+        {
+            path    : req.path,
+            method  : req.method,
+            query   : req.query,
+            body    : req.body
+        };
+        KRONOS.getLogger().debug( `Request info during DB Downtime` );
+        KRONOS.getLogger().debug( incomingReq );
+        res.status( 500 ).json({ message: `Internal Server Error` });
+    }
+
     KRONOS.getLogger().debug( `Request received from : ${ req.path }, HTTP Method : ${ req.method }` );
     if( req.method != "GET" && req.method != "POST" )
     {
